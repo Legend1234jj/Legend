@@ -3,22 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>STAR CREATOR | YouTuber Website</title>
+    <title>LEGENDEDITORYT64 | Armwrestling Legends</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Roboto+Con//Xse//0:wght@700&display=swap" rel="stylesheet">
     <style>
-        /* ====== VARIABLES & RESET ====== */
         :root {
-            --primary: #ff4d4d;
-            --secondary: #6c5ce7;
-            --accent: #00ccff;
+            --primary: #d32f2f;
+            --secondary: #212121;
+            --accent: #ff9800;
             --dark: #121212;
-            --darker: #0a0a0a;
-            --light: #f9f9f9;
-            --text: #333;
+            --light: #f5f5f5;
+            --text: #e0e0e0;
+            --gold: #ffd700;
             --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            --shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
-            --glow: 0 0 20px rgba(255, 77, 77, 0.7);
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
         }
 
         * {
@@ -29,184 +27,64 @@
         }
 
         body {
-            background: var(--darker);
-            color: var(--light);
+            background: linear-gradient(135deg, #1a1a1a 0%, #000 100%);
+            color: var(--text);
             overflow-x: hidden;
             min-height: 100vh;
-            perspective: 1000px;
+            line-height: 1.6;
         }
 
-        /* ====== CUSTOM CURSOR ====== */
-        .cursor {
-            position: fixed;
-            width: 30px;
-            height: 30px;
-            border: 2px solid var(--accent);
-            border-radius: 50%;
-            pointer-events: none;
-            transform: translate(-50%, -50%);
-            z-index: 9999;
-            mix-blend-mode: difference;
-            transition: transform 0.1s, width 0.3s, height 0.3s;
-        }
-
-        .cursor-follower {
-            position: fixed;
-            width: 8px;
-            height: 8px;
-            background: var(--accent);
-            border-radius: 50%;
-            pointer-events: none;
-            transform: translate(-50%, -50%);
-            z-index: 9998;
-            transition: width 0.3s, height 0.3s;
-        }
-
-        .cursor.hover, .cursor-follower.hover {
-            transform: translate(-50%, -50%) scale(1.5);
-            background: var(--primary);
-            border-color: transparent;
-        }
-
-        /* ====== NAVBAR ====== */
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px 5%;
-            background: rgba(18, 18, 18, 0.8);
-            backdrop-filter: blur(10px);
-            position: fixed;
-            width: 100%;
-            z-index: 1000;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .logo {
-            font-size: 28px;
-            font-weight: 800;
-            background: linear-gradient(45deg, var(--primary), var(--secondary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            letter-spacing: -1px;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 30px;
-        }
-
-        .nav-links a {
-            text-decoration: none;
-            color: var(--light);
-            font-weight: 500;
-            font-size: 16px;
-            position: relative;
-            padding: 5px 0;
-            transition: var(--transition);
-        }
-
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--primary);
-            transition: var(--transition);
-        }
-
-        .nav-links a:hover {
-            color: var(--primary);
-        }
-
-        .nav-links a:hover::after {
-            width: 100%;
-        }
-
-        .theme-toggle {
-            background: transparent;
-            color: var(--light);
-            border: 2px solid var(--primary);
-            padding: 8px 20px;
-            border-radius: 30px;
-            cursor: pointer;
-            font-weight: 600;
-            transition: var(--transition);
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .theme-toggle:hover {
-            background: var(--primary);
-            transform: translateY(-3px);
-            box-shadow: var(--glow);
-        }
-
-        /* ====== HERO SECTION WITH VIDEO BACKGROUND ====== */
-        .hero {
+        .hero-section {
             height: 100vh;
+            position: relative;
+            overflow: hidden;
             display: flex;
             align-items: center;
             justify-content: center;
             text-align: center;
-            position: relative;
-            overflow: hidden;
+            padding: 0 20px;
         }
 
-        .video-background {
+        .hero-overlay {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            object-fit: cover;
-            z-index: -1;
-            opacity: 0.4;
-        }
-
-        .overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(circle, rgba(18,18,18,0.6) 0%, rgba(10,10,10,0.9) 100%);
-            z-index: -1;
+            background: radial-gradient(circle, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.9) 100%);
+            z-index: 1;
         }
 
         .hero-content {
-            max-width: 900px;
-            padding: 0 20px;
+            position: relative;
             z-index: 2;
+            max-width: 1200px;
+            padding: 20px;
         }
 
-        .hero-content h1 {
+        .logo {
             font-size: 5rem;
+            font-weight: 900;
             margin-bottom: 20px;
-            line-height: 1.1;
-            background: linear-gradient(to right, var(--primary), var(--secondary), var(--accent));
+            background: linear-gradient(to right, var(--gold), var(--accent));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             text-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
             letter-spacing: -2px;
+            font-family: 'Roboto Condensed', sans-serif;
         }
 
-        .hero-content p {
-            font-size: 1.4rem;
-            margin-bottom: 40px;
-            max-width: 700px;
-            margin-left: auto;
-            margin-right: auto;
-            color: rgba(255, 255, 255, 0.8);
-            font-weight: 300;
+        .tagline {
+            font-size: 1.8rem;
+            margin-bottom: 30px;
+            color: var(--gold);
+            text-transform: uppercase;
+            letter-spacing: 3px;
         }
 
         .cta-button {
-            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            display: inline-block;
+            background: linear-gradient(45deg, var(--primary), #b71c1c);
             color: white;
             border: none;
             padding: 15px 40px;
@@ -219,36 +97,52 @@
             overflow: hidden;
             z-index: 1;
             transition: var(--transition);
-            margin: 0 10px 30px;
+            margin: 20px 10px;
+            text-decoration: none;
         }
 
         .cta-button:hover {
             transform: translateY(-5px) scale(1.05);
-            box-shadow: 0 15px 30px rgba(255, 77, 77, 0.4);
+            box-shadow: 0 15px 30px rgba(211, 47, 47, 0.4);
         }
 
-        .cta-button::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(45deg, var(--secondary), var(--accent));
-            z-index: -1;
-            opacity: 0;
+        .cta-button i {
+            margin-right: 10px;
+        }
+
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            margin: 40px 0;
+        }
+
+        .social-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            color: var(--gold);
             transition: var(--transition);
+            text-decoration: none;
         }
 
-        .cta-button:hover::after {
-            opacity: 1;
+        .social-icon:hover {
+            background: var(--primary);
+            transform: translateY(-8px);
+            box-shadow: 0 10px 20px rgba(211, 47, 47, 0.3);
         }
 
         .stats {
             display: flex;
             justify-content: center;
-            gap: 40px;
-            margin-top: 30px;
+            gap: 50px;
+            margin-top: 50px;
+            flex-wrap: wrap;
         }
 
         .stat-item {
@@ -256,78 +150,32 @@
         }
 
         .stat-number {
-            font-size: 2.5rem;
+            font-size: 2.8rem;
             font-weight: 700;
-            background: linear-gradient(to right, var(--primary), var(--accent));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            color: var(--gold);
+            line-height: 1;
         }
 
         .stat-label {
-            font-size: 1rem;
-            color: rgba(255, 255, 255, 0.7);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        /* ====== COUNTDOWN TIMER ====== */
-        .countdown-container {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border-radius: 20px;
-            padding: 25px;
-            margin: 40px auto;
-            max-width: 700px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            box-shadow: var(--shadow);
-        }
-
-        .countdown-title {
-            font-size: 1.8rem;
-            margin-bottom: 25px;
-            text-align: center;
-            color: var(--accent);
-        }
-
-        .countdown {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-        }
-
-        .countdown-item {
-            text-align: center;
-            min-width: 100px;
-        }
-
-        .countdown-number {
-            font-size: 3rem;
-            font-weight: 700;
-            background: linear-gradient(to bottom, var(--primary), var(--secondary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            line-height: 1;
-            margin-bottom: 5px;
-            text-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-        }
-
-        .countdown-label {
-            font-size: 1rem;
+            font-size: 1.1rem;
             color: rgba(255, 255, 255, 0.7);
             text-transform: uppercase;
             letter-spacing: 2px;
         }
 
-        /* ====== VIDEO GRID ====== */
         .section {
-            padding: 100px 5%;
+            padding: 100px 20px;
+            max-width: 1400px;
+            margin: 0 auto;
         }
 
         .section-title {
             text-align: center;
             margin-bottom: 70px;
-            font-size: 2.8rem;
+            font-size: 3rem;
             position: relative;
+            text-transform: uppercase;
+            letter-spacing: 3px;
         }
 
         .section-title::after {
@@ -336,274 +184,231 @@
             bottom: -15px;
             left: 50%;
             transform: translateX(-50%);
-            width: 80px;
+            width: 150px;
             height: 4px;
             background: var(--primary);
             border-radius: 2px;
         }
 
-        .video-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-            gap: 40px;
+        .video-container {
+            display: flex;
+            justify-content: center;
+            margin: 60px 0;
         }
 
-        .video-card {
-            background: rgba(30, 30, 30, 0.6);
+        .video-wrapper {
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            border: 3px solid var(--primary);
+        }
+
+        .video-wrapper iframe {
+            width: 100%;
+            height: 450px;
+            border: none;
+        }
+
+        .legends-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-top: 50px;
+        }
+
+        .legend-card {
+            background: rgba(30, 30, 30, 0.7);
             border-radius: 15px;
             overflow: hidden;
             box-shadow: var(--shadow);
             transition: var(--transition);
-            transform-style: preserve-3d;
             position: relative;
-            border: 1px solid rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
-        .video-card:hover {
-            transform: translateY(-15px) rotateX(5deg) rotateY(5deg);
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
-            border-color: rgba(255, 77, 77, 0.3);
+        .legend-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4);
+            border-color: var(--primary);
         }
 
-        .video-thumbnail {
+        .legend-image {
             width: 100%;
-            height: 200px;
+            height: 300px;
             object-fit: cover;
-            transition: var(--transition);
         }
 
-        .video-card:hover .video-thumbnail {
-            transform: scale(1.05);
+        .legend-info {
+            padding: 25px;
+            text-align: center;
         }
 
-        .video-info {
-            padding: 20px;
-        }
-
-        .video-info h3 {
+        .legend-name {
+            font-size: 1.8rem;
             margin-bottom: 10px;
-            font-size: 1.3rem;
-            font-weight: 600;
+            color: var(--gold);
         }
 
-        .video-info p {
-            color: rgba(255, 255, 255, 0.7);
-            font-size: 0.9rem;
-            margin-bottom: 15px;
-        }
-
-        .video-stats {
-            display: flex;
-            justify-content: space-between;
+        .legend-title {
             color: var(--primary);
-            font-weight: 500;
-            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .legend-desc {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 1rem;
         }
 
         .badge {
             position: absolute;
-            top: 15px;
-            right: 15px;
+            top: 20px;
+            right: 20px;
             background: var(--primary);
             color: white;
-            padding: 5px 15px;
-            border-radius: 20px;
-            font-size: 0.8rem;
+            padding: 8px 20px;
+            border-radius: 30px;
+            font-size: 0.9rem;
             font-weight: 600;
             z-index: 2;
-            box-shadow: 0 5px 15px rgba(255, 77, 77, 0.3);
+            box-shadow: 0 5px 15px rgba(211, 47, 47, 0.3);
         }
 
-        /* ====== FEATURES SECTION ====== */
-        .features {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin-top: 50px;
+        .about-section {
+            background: rgba(20, 20, 20, 0.8);
+            border-radius: 20px;
+            padding: 50px;
+            margin: 80px 0;
+            box-shadow: var(--shadow);
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
-        .feature-card {
-            background: rgba(30, 30, 30, 0.4);
-            border-radius: 15px;
-            padding: 30px;
+        .about-title {
             text-align: center;
-            transition: var(--transition);
-            border: 1px solid rgba(255, 255, 255, 0.05);
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+            color: var(--gold);
         }
 
-        .feature-card:hover {
-            transform: translateY(-10px);
-            background: rgba(40, 40, 40, 0.6);
-            border-color: rgba(108, 92, 231, 0.3);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        .about-content {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+            flex-wrap: wrap;
         }
 
-        .feature-icon {
-            font-size: 3rem;
+        .about-text {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .about-text p {
             margin-bottom: 20px;
-            background: linear-gradient(to right, var(--secondary), var(--accent));
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .about-image {
+            flex: 1;
+            min-width: 300px;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+
+        .about-image img {
+            width: 100%;
+            display: block;
+        }
+
+        .footer {
+            background: var(--dark);
+            padding: 70px 20px 30px;
+            text-align: center;
+            border-top: 3px solid var(--primary);
+        }
+
+        .footer-logo {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            background: linear-gradient(to right, var(--gold), var(--accent));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-        }
-
-        .feature-card h3 {
-            font-size: 1.5rem;
-            margin-bottom: 15px;
-        }
-
-        .feature-card p {
-            color: rgba(255, 255, 255, 0.7);
-            line-height: 1.6;
-        }
-
-        /* ====== FOOTER ====== */
-        footer {
-            background: var(--darker);
-            padding: 70px 5% 30px;
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
-        }
-
-        .footer-content {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 40px;
-            margin-bottom: 50px;
-        }
-
-        .footer-column h3 {
-            font-size: 1.5rem;
-            margin-bottom: 25px;
-            position: relative;
-            padding-bottom: 10px;
-        }
-
-        .footer-column h3::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 50px;
-            height: 3px;
-            background: var(--primary);
-        }
-
-        .footer-column p {
-            color: rgba(255, 255, 255, 0.6);
-            line-height: 1.8;
-            margin-bottom: 20px;
-        }
-
-        .social-links {
-            display: flex;
-            gap: 15px;
-        }
-
-        .social-links a {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 45px;
-            height: 45px;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.05);
-            color: var(--light);
-            font-size: 1.2rem;
-            transition: var(--transition);
-        }
-
-        .social-links a:hover {
-            background: var(--primary);
-            transform: translateY(-5px);
-        }
-
-        .footer-links {
-            list-style: none;
-        }
-
-        .footer-links li {
-            margin-bottom: 12px;
-        }
-
-        .footer-links a {
-            text-decoration: none;
-            color: rgba(255, 255, 255, 0.6);
-            transition: var(--transition);
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .footer-links a:hover {
-            color: var(--primary);
-            transform: translateX(5px);
-        }
-
-        .footer-links a i {
-            color: var(--primary);
+            display: inline-block;
         }
 
         .copyright {
-            text-align: center;
-            padding-top: 30px;
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
-            color: rgba(255, 255, 255, 0.4);
-            font-size: 0.9rem;
+            margin-top: 40px;
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 1rem;
         }
 
-        /* ====== RESPONSIVE DESIGN ====== */
+        .highlight {
+            color: var(--gold);
+            font-weight: 600;
+        }
+
         @media (max-width: 992px) {
-            .hero-content h1 {
+            .logo {
                 font-size: 4rem;
             }
             
-            .countdown-item {
-                min-width: 80px;
+            .tagline {
+                font-size: 1.5rem;
             }
             
-            .countdown-number {
+            .section-title {
                 font-size: 2.5rem;
             }
         }
 
         @media (max-width: 768px) {
-            nav {
-                flex-direction: column;
-                gap: 15px;
-                padding: 15px;
-            }
-            
-            .hero-content h1 {
+            .logo {
                 font-size: 3rem;
             }
             
-            .hero-content p {
-                font-size: 1.2rem;
+            .tagline {
+                font-size: 1.3rem;
             }
             
-            .countdown {
-                flex-wrap: wrap;
+            .section-title {
+                font-size: 2rem;
             }
             
-            .stats {
-                flex-wrap: wrap;
+            .video-wrapper iframe {
+                height: 300px;
+            }
+            
+            .stat-number {
+                font-size: 2.2rem;
             }
         }
 
         @media (max-width: 480px) {
-            .hero-content h1 {
+            .logo {
                 font-size: 2.5rem;
             }
             
-            .section-title {
-                font-size: 2.2rem;
+            .cta-button {
+                padding: 12px 25px;
+                font-size: 1rem;
             }
             
-            .video-grid {
-                grid-template-columns: 1fr;
+            .video-wrapper iframe {
+                height: 200px;
+            }
+            
+            .about-section {
+                padding: 30px 20px;
             }
         }
 
-        /* ====== ANIMATIONS ====== */
         @keyframes float {
             0%, 100% { transform: translateY(0); }
             50% { transform: translateY(-20px); }
@@ -621,292 +426,210 @@
         .pulse {
             animation: pulse 3s ease-in-out infinite;
         }
-
-        .fade-in {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.6s ease, transform 0.6s ease;
-        }
-
-        .fade-in.appear {
-            opacity: 1;
-            transform: translateY(0);
-        }
     </style>
 </head>
 <body>
-    <!-- Custom Cursor -->
-    <div class="cursor"></div>
-    <div class="cursor-follower"></div>
-
-    <!-- Navbar -->
-    <nav>
-        <div class="logo">STAR CREATOR</div>
-        <div class="nav-links">
-            <a href="#"><i class="fas fa-home"></i> Home</a>
-            <a href="#videos"><i class="fas fa-play-circle"></i> Videos</a>
-            <a href="#"><i class="fas fa-store"></i> Merch</a>
-            <a href="#"><i class="fas fa-info-circle"></i> About</a>
-        </div>
-        <button class="theme-toggle">
-            <i class="fas fa-moon"></i> Dark Mode
-        </button>
-    </nav>
-
-    <!-- Hero Section with Video Background -->
-    <section class="hero">
-        <video class="video-background" autoplay muted loop>
-            <source src="https://assets.mixkit.co/videos/preview/mixkit-girl-in-neon-sign-1232-large.mp4" type="video/mp4">
-        </video>
-        <div class="overlay"></div>
-        
-        <div class="hero-content fade-in">
-            <h1>CREATE CONTENT THAT <span class="pulse">CAPTIVATES</span></h1>
-            <p>Join millions of viewers who experience the extraordinary. New videos every week with challenges, vlogs, and exclusive content!</p>
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <div class="logo floating">LEGENDEDITORYT64</div>
+            <div class="tagline pulse">THE HOME OF ARM WRESTLING LEGENDS</div>
             
             <div>
-                <button class="cta-button"><i class="fab fa-youtube"></i> SUBSCRIBE NOW</button>
-                <button class="cta-button"><i class="fas fa-bell"></i> GET NOTIFIED</button>
+                <a href="https://youtube.com/@legendeditoryt64?si=gZTHQL8l7t3eMmUF" class="cta-button" target="_blank">
+                    <i class="fab fa-youtube"></i> SUBSCRIBE NOW
+                </a>
+                <a href="https://youtube.com/shorts/DQyuYKHPr0I?si=0CWaVvjpLMhScpOb" class="cta-button" target="_blank">
+                    <i class="fas fa-play"></i> WATCH LATEST
+                </a>
             </div>
             
-            <!-- Countdown Timer -->
-            <div class="countdown-container fade-in">
-                <h2 class="countdown-title">NEXT VIDEO RELEASE IN:</h2>
-                <div class="countdown">
-                    <div class="countdown-item">
-                        <div class="countdown-number" id="days">00</div>
-                        <div class="countdown-label">Days</div>
-                    </div>
-                    <div class="countdown-item">
-                        <div class="countdown-number" id="hours">00</div>
-                        <div class="countdown-label">Hours</div>
-                    </div>
-                    <div class="countdown-item">
-                        <div class="countdown-number" id="minutes">00</div>
-                        <div class="countdown-label">Minutes</div>
-                    </div>
-                    <div class="countdown-item">
-                        <div class="countdown-number" id="seconds">00</div>
-                        <div class="countdown-label">Seconds</div>
-                    </div>
-                </div>
+            <div class="social-icons">
+                <a href="https://youtube.com/@legendeditoryt64?si=gZTHQL8l7t3eMmUF" class="social-icon" target="_blank">
+                    <i class="fab fa-youtube"></i>
+                </a>
+                <a href="https://www.instagram.com/gautam.64_/" class="social-icon" target="_blank">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="https://t.me/legendcreator64" class="social-icon" target="_blank">
+                    <i class="fab fa-telegram"></i>
+                </a>
             </div>
             
             <div class="stats">
                 <div class="stat-item">
-                    <div class="stat-number">5.2M</div>
-                    <div class="stat-label">Subscribers</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-number">412M</div>
+                    <div class="stat-number">40k</div>
                     <div class="stat-label">Views</div>
                 </div>
                 <div class="stat-item">
-                    <div class="stat-number">1.4K</div>
+                    <div class="stat-number">65</div>
+                    <div class="stat-label">Subscribers</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">36</div>
                     <div class="stat-label">Videos</div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Video Section -->
-    <section class="section" id="videos">
-        <h2 class="section-title">TRENDING VIDEOS</h2>
-        <div class="video-grid">
-            <!-- Video Card 1 -->
-            <div class="video-card fade-in">
-                <div class="badge">TRENDING</div>
-                <img src="https://i.ytimg.com/vi/dQw4w9WgXcQ/maxresdefault.jpg" alt="Video Thumbnail" class="video-thumbnail">
-                <div class="video-info">
-                    <h3>I Spent $1,000,000 in 24 Hours!</h3>
-                    <p>The craziest challenge yet - see what happens when money is no object for an entire day.</p>
-                    <div class="video-stats">
-                        <span><i class="fas fa-eye"></i> 25M views</span>
-                        <span><i class="fas fa-thumbs-up"></i> 1.2M</span>
-                    </div>
+    <!-- Latest Video Section -->
+    <section class="section">
+        <h2 class="section-title">LATEST ARM WRESTLING ACTION</h2>
+        <div class="video-container">
+            <div class="video-wrapper">
+                <iframe src="https://www.youtube.com/embed/DQyuYKHPr0I" title="Latest Arm Wrestling Video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+        </div>
+    </section>
+
+    <!-- Arm Wrestling Legends Section -->
+    <section class="section">
+        <h2 class="section-title">ARM WRESTLING LEGENDS</h2>
+        <div class="legends-grid">
+            <!-- Devon Larratt -->
+            <div class="legend-card">
+                <div class="badge">CANADA</div>
+                <img src="devo.jpg" alt="Devon Larratt" class="legend-image">
+                <div class="legend-info">
+                    <h3 class="legend-name">DEVON LARRATT</h3>
+                    <div class="legend-title">THE LEGEND</div>
+                    <p class="legend-desc">Canadian arm wrestling legend known for his technical prowess and endurance. Multiple-time world champion with an unmatched ability to read opponents.</p>
                 </div>
             </div>
             
-            <!-- Video Card 2 -->
-            <div class="video-card fade-in">
-                <div class="badge">NEW</div>
-                <img src="https://i.ytimg.com/vi/9bZkp7q19f0/maxresdefault.jpg" alt="Video Thumbnail" class="video-thumbnail">
-                <div class="video-info">
-                    <h3>Last To Leave Wins $500,000</h3>
-                    <p>10 contestants, 1 massive prize - who will outlast everyone else?</p>
-                    <div class="video-stats">
-                        <span><i class="fas fa-eye"></i> 18M views</span>
-                        <span><i class="fas fa-thumbs-up"></i> 890K</span>
-                    </div>
+            <!-- Levan Saginashvili -->
+            <div class="legend-card">
+                <div class="badge">GEORGIA</div>
+                <img src="levan.jpg" alt="Levan Saginashvili" class="legend-image">
+                <div class="legend-info">
+                    <h3 class="legend-name">LEVAN SAGINASHVILI</h3>
+                    <div class="legend-title">THE GEORGIAN HULK</div>
+                    <p class="legend-desc">Georgian powerhouse considered the strongest arm wrestler in the world. Known for his incredible size, strength, and dominant top-roll technique.</p>
                 </div>
             </div>
             
-            <!-- Video Card 3 -->
-            <div class="video-card fade-in">
-                <div class="badge">POPULAR</div>
-                <img src="https://i.ytimg.com/vi/J---aiyznGQ/maxresdefault.jpg" alt="Video Thumbnail" class="video-thumbnail">
-                <div class="video-info">
-                    <h3>24 Hours in a Haunted Mansion</h3>
-                    <p>We spent a full day in one of America's most haunted locations. What we experienced was terrifying.</p>
-                    <div class="video-stats">
-                        <span><i class="fas fa-eye"></i> 32M views</span>
-                        <span><i class="fas fa-thumbs-up"></i> 1.8M</span>
-                    </div>
+            <!-- Denis Cyplenkov -->
+            <div class="legend-card">
+                <div class="badge">RUSSIA</div>
+                <img src="denis.jpg" alt="Denis Cyplenkov" class="legend-image">
+                <div class="legend-info">
+                    <h3 class="legend-name">DENIS CYPLENKOV</h3>
+                    <div class="legend-title">THE RUSSIAN HULK</div>
+                    <p class="legend-desc">Russian arm wrestling icon with legendary hand and wrist strength. Known for his massive hands and incredible hook technique that crushes opponents.</p>
+                </div>
+            </div>
+            
+            <!-- John Brzenk -->
+            <div class="legend-card">
+                <div class="badge">USA</div>
+                <img src="john.jpg" alt="John Brzenk" class="legend-image">
+                <div class="legend-info">
+                    <h3 class="legend-name">JOHN BRZENK</h3>
+                    <div class="legend-title">THE GOAT</div>
+                    <p class="legend-desc">American arm wrestling legend known as the G.O.A.T. "Greatest of All Time". Dominated the sport for decades with his technical mastery and versatility.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Features Section -->
+    <!-- About Section -->
     <section class="section">
-        <h2 class="section-title">WHY SUBSCRIBE?</h2>
-        <div class="features">
-            <div class="feature-card fade-in">
-                <div class="feature-icon">
-                    <i class="fas fa-bolt"></i>
+        <div class="about-section">
+            <h2 class="about-title">ABOUT LEGEND EDITOR</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>Welcome to the official channel of <span class="highlight">Legend Editor</span>, your premier destination for the most intense and thrilling arm wrestling content on YouTube.</p>
+                    
+                    <p>At LEGENDEDITORYT64, we bring you:</p>
+                    
+                    <p> <span class="highlight">Epic Matches</span> - Witness the world's strongest arm wrestlers battle for supremacy</p>
+                    <p> <span class="highlight">Training Secrets</span> - Learn techniques from legends like Devon Larratt and Levan Saginashvili</p>
+                    <p> <span class="highlight">Championship Coverage</span> - Exclusive access to top arm wrestling tournaments worldwide</p>
+                    <p> <span class="highlight">Legendary Edits</span> - Professionally edited highlights showcasing the sport's most dramatic moments</p>
+                    
+                    <p>Our channel celebrates the strength, technique, and passion that define professional arm wrestling. From the technical mastery of John Brzenk to the raw power of Denis Cyplenkov, we cover it all.</p>
+                    
+                    <p>Join our growing community of arm wrestling enthusiasts and experience the thrill of the table!</p>
+                    
+                    <a href="https://youtube.com/@legendeditoryt64?si=gZTHQL8l7t3eMmUF" class="cta-button" target="_blank">
+                        <i class="fab fa-youtube"></i> JOIN THE LEGEND ARMY
+                    </a>
                 </div>
-                <h3>Exclusive Content</h3>
-                <p>Get access to videos 24 hours before anyone else, behind-the-scenes footage, and members-only live streams.</p>
-            </div>
-            
-            <div class="feature-card fade-in">
-                <div class="feature-icon">
-                    <i class="fas fa-gift"></i>
+                <div class="about-image">
+                    <img src="arm.jpg" alt="Arm Wrestling Action">
                 </div>
-                <h3>Huge Giveaways</h3>
-                <p>Subscribers get entered into monthly giveaways with prizes like gaming setups, tech gadgets, and cash.</p>
-            </div>
-            
-            <div class="feature-card fade-in">
-                <div class="feature-icon">
-                    <i class="fas fa-users"></i>
-                </div>
-                <h3>Join the Community</h3>
-                <p>Be part of our Discord community with 50,000+//3//f/9//3//f/9//3//f/9//3//f/9//3//f/9//3//f/9//3//f/9//3//f/9//3//f/9 members, exclusive events, and creator meetups.</p>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer>
-        <div class="footer-content">
-            <div class="footer-column">
-                <h3>STAR CREATOR</h3>
-                <p>Creating extraordinary content that pushes boundaries and inspires millions around the world.</p>
-                <div class="social-links">
-                    <a href="#"><i class="fab fa-youtube"></i></a>
-                    <a href="#"><i class="fab fa-instagram"></i></a>
-                    <a href="#"><i class="fab fa-tiktok"></i></a>
-                    <a href="#"><i class="fab fa-twitter"></i></a>
-                    <a href="#"><i class="fab fa-discord"></i></a>
-                </div>
-            </div>
-            
-            <div class="footer-column">
-                <h3>Quick Links</h3>
-                <ul class="footer-links">
-                    <li><a href="#"><i class="fas fa-chevron-right"></i> Latest Videos</a></li>
-                    <li><a href="#"><i class="fas fa-chevron-right"></i> Popular Content</a></li>
-                    <li><a href="#"><i class="fas fa-chevron-right"></i> Merch Store</a></li>
-                    <li><a href="#"><i class="fas fa-chevron-right"></i> Collaboration</a></li>
-                    <li><a href="#"><i class="fas fa-chevron-right"></i> Contact</a></li>
-                </ul>
-            </div>
-            
-            <div class="footer-column">
-                <h3>Join the Newsletter</h3>
-                <p>Subscribe to get exclusive updates, early access, and special offers.</p>
-                <form>
-                    <input type="email" placeholder="Your Email" style="width:100%; padding:12px; margin-bottom:15px; border-radius:30px; border:none; background:rgba(255,255,255,0.1); color:white;">
-                    <button class="cta-button" style="width:100%;">SUBSCRIBE</button>
-                </form>
-            </div>
+    <footer class="footer">
+        <div class="footer-logo">LEGENDEDITORYT64</div>
+        
+        <div class="social-icons">
+            <a href="https://youtube.com/@legendeditoryt64?si=gZTHQL8l7t3eMmUF" class="social-icon" target="_blank">
+                <i class="fab fa-youtube"></i>
+            </a>
+            <a href="https://www.instagram.com/gautam.64_/" class="social-icon" target="_blank">
+                <i class="fab fa-instagram"></i>
+            </a>
+            <a href="https://t.me/legendcreator64" class="social-icon" target="_blank">
+                <i class="fab fa-telegram"></i>
+            </a>
         </div>
         
         <div class="copyright">
-            &copy; 2023 STAR CREATOR. All Rights Reserved. | Designed with <i class="fas fa-heart" style="color:var(--primary);"></i> for Content Creators
+            &copy; 2023 LEGENDEDITORYT64 | The Ultimate Arm Wrestling Channel | Created by Legend Editor
         </div>
     </footer>
 
-    <!-- JavaScript -->
     <script>
-        // Custom cursor
-        const cursor = document.querySelector('.cursor');
-        const cursorFollower = document.querySelector('.cursor-follower');
+        // Floating animation for cards on hover
+        const cards = document.querySelectorAll('.legend-card');
         
-        document.addEventListener('mousemove', (e) => {
-            cursor.style.transform = `translate3d(${e.clientX}px, ${e.clientY}px, 0)`;
-            cursorFollower.style.transform = `translate3d(${e.clientX}px, ${e.clientY}px, 0)`;
-        });
-        
-        // Add hover class to cursor when hovering over interactive elements
-        const hoverElements = ['A', 'BUTTON', 'INPUT', '.video-card', '.feature-card'];
-        hoverElements.forEach(tag => {
-            document.querySelectorAll(tag).forEach(el => {
-                el.addEventListener('mouseenter', () => {
-                    cursor.classList.add('hover');
-                    cursorFollower.classList.add('hover');
-                });
-                el.addEventListener('mouseleave', () => {
-                    cursor.classList.remove('hover');
-                    cursorFollower.classList.remove('hover');
-                });
+        cards.forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                
+                const angleY = (x - centerX) / 25;
+                const angleX = (centerY - y) / 25;
+                
+                card.style.transform = `perspective(1000px) rotateX(${angleX}deg) rotateY(${angleY}deg) translateY(-15px)`;
+            });
+            
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'translateY(-15px)';
+                setTimeout(() => {
+                    card.style.transform = '';
+                }, 300);
             });
         });
-
-        // Countdown timer
-        function updateCountdown() {
-            const now = new Date();
-            const nextFriday = new Date();
-            
-            // Set to next Friday at 18:00 (6 PM)
-            nextFriday.setDate(now.getDate() +//3//f/9//3//f/9//3//f/9//3//f/9//3//f/9//3//f/9//3//f/9//3//f/9//3//f/9 (5 - now.getDay() +//3//f/9//3//f/9//3//f/9//3//f/9//3//f/9//3//f/9//3//f/9//3//f/9//3//f/9 7) % 7);
-            nextFriday.setHours(18, 0, 0, 0);
-            
-            const diff = nextFriday - now;
-            
-            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
-            
-            document.getElementById('days').textContent = days.toString().padStart(2, '0');
-            document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
-            document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
-            document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
-        }
         
-        // Initialize and update countdown every second
-        updateCountdown();
-        setInterval(updateCountdown, 1000);
-
-        // Scroll animations
-        const fadeElements = document.querySelectorAll('.fade-in');
-                const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('appear');
+        // Simple animation for stats
+        const stats = document.querySelectorAll('.stat-number');
+        stats.forEach(stat => {
+            const target = +stY.innerText.replace(/+//0-D/g, '');
+            let count = 0;
+            const increment = target / 50;
+            
+            const updateCount = () => {
+                if (count < target) {
+                    count = increment;
+                    stat.innerText = Math.ceil(count)  (stat.innerText.includes('') ? '' : '');
+                    requestAnimationFrame(updateCount);
+                } else {
+                    stat.innerText = target  (stat.innerText.includes('') ? '' : '');
                 }
-            });
-        }, { threshold: 0.1 });
-        
-        fadeElements.forEach(el => {
-            observer.observe(el);
-        });
-
-        // Theme toggle
-        const themeToggle = document.querySelector('.theme-toggle');
-        themeToggle.addEventListener('click', () => {
-            document.body.classList.toggle('light-mode');
-            if (document.body.classList.contains('light-mode')) {
-                themeToggle.innerHTML = '<i class="fas fa-moon"></i> Dark Mode';
-                document.body.style.background = '#f0f0f0';
-                document.body.style.color = '#333';
-            } else {
-                themeToggle.innerHTML = '<i class="fas fa-sun"></i> Light Mode';
-                document.body.style.background = '#0a0a0a';
-                document.body.style.color = '#f9f9f9';
-            }
+            };
+            
+            setTimeout(updateCount, 1000);
         });
     </script>
 </body>
